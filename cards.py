@@ -32,14 +32,17 @@ class Card(object):
 # print card_ranks(['AC', '3D', '4S', 'KH']) #should output [14, 13, 4, 3]
 
 class Deck(object):
+    '''
+    Class to create a standard 52-card deck
+    '''
     def __init__(self):
-        # deck = []
-        # for s in range(4):
-        #     for r in range(1, 14):
-        #         deck.append(Card(r, s))
         self.deck = self.create_deck()
 
     def create_deck(self):
+        '''
+        Creates a standard 52-card deck
+        :return: deck list of card objects
+        '''
         deck = []
         for s in range(4):
             for r in range(1, 14):
@@ -47,8 +50,28 @@ class Deck(object):
         return deck
 
     def shuffle(self):
-        """Shuffles the deck with the Fisher-Yates shuffle"""
+        '''
+        Shuffles the deck with the Fisher-Yates shuffle
+        '''
         num_cards = len(self.deck)
         for i in range(num_cards):
             j = randint(i, num_cards - 1)
             self.deck[i], self.deck[j] = self.deck[j], self.deck[i]
+
+class Shoe(Deck):
+    '''
+    Subclass of Deck.
+    '''
+    def __init__(self, num_decks = 1):
+        self.shoe = self.create_shoe(num_decks)
+
+    def create_shoe(self, num_decks):
+        '''
+        Creates shoe with the indicated number of decks
+        :param num_decks: int
+        :return: shoe list of card objects
+        '''
+        shoe = []
+        for d in range(num_decks):
+            shoe.extend(self.create_deck())
+        return shoe
