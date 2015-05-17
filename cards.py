@@ -33,11 +33,18 @@ class Card(object):
 
 class Deck(object):
     def __init__(self):
+        # deck = []
+        # for s in range(4):
+        #     for r in range(1, 14):
+        #         deck.append(Card(r, s))
+        self.deck = self.create_deck()
+
+    def create_deck(self):
         deck = []
         for s in range(4):
             for r in range(1, 14):
                 deck.append(Card(r, s))
-        self.deck = deck
+        return deck
 
     def shuffle(self):
         """Shuffles the deck with the Fisher-Yates shuffle"""
