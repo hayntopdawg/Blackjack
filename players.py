@@ -3,7 +3,6 @@ __author__ = 'FujNasty'
 class Hand(object):
     def __init__(self):
         self.hand = []
-        self.value = 0
 
     def __str__(self):
         return ','.join([card for card in self.hand])
@@ -12,10 +11,12 @@ class Hand(object):
         self.hand.append(card)
 
     def get_value(self):
+        value = 0
         ace = False
         for card in self.hand:
-            self.value += card.value
+            value += card.value
             if card.rank == "Ace":
                 ace = True
-        if ace and self.value <= 10:
-            self.value += 10
+        if ace and value <= 11:
+            value += 10
+        return value
