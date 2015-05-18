@@ -4,16 +4,18 @@ __author__ = 'FujNasty'
 from random import randint
 
 class Card(object):
-    rank_name = (None, "Ace", "2", "3", "4", "5", "6", "7",
+    ranks = (None, "Ace", "2", "3", "4", "5", "6", "7",
             "8", "9", "10", "Jack", "Queen", "King")
-    suit_name = ("Spades", "Hearts", "Clubs", "Diamonds")
+    suits = ("Spades", "Hearts", "Clubs", "Diamonds")
+    values = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10)
 
     def __init__(self, rank = 1, suit = 0):
         self.rank = rank
         self.suit = suit
+        self.value = Card.values[rank]
 
     def __str__(self):
-        return "%s of %s" % (Card.rank_name[self.rank], Card.suit_name[self.suit])
+        return "%s of %s" % (Card.ranks[self.rank], Card.suits[self.suit])
 
 # # -----------
 # # User Instructions
