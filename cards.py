@@ -18,12 +18,16 @@ class Card(object):
     def __str__(self):
         return "%s of %s" % (self.rank, self.suit)
 
+    def get_value(self):
+        if self.value == 1: return 11
+        else: return self.value
+
 class Deck(object):
     '''
     Class to create a standard 52-card deck
     '''
     def __init__(self):
-        self.deck = self.create_deck()
+        self.create_deck()
 
     def __len__(self):
         return len(self.deck)
@@ -37,7 +41,7 @@ class Deck(object):
         for s in SUITS:
             for r in RANKS:
                 deck.append(Card(r, s))
-        return deck
+        self.deck = deck
 
     def shuffle(self):
         '''
