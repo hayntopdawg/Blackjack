@@ -18,9 +18,8 @@ class Card(object):
     def __str__(self):
         return "%s of %s" % (self.rank, self.suit)
 
-    def get_value(self):
-        if self.value == 1: return 11
-        else: return self.value
+    def get_card_value(self):
+        return self.value
 
 class Deck(object):
     '''

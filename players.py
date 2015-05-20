@@ -1,5 +1,7 @@
 __author__ = 'FujNasty'
 
+from cards import Card
+
 class Hand(object):
     def __init__(self):
         self.hand = []
@@ -10,11 +12,11 @@ class Hand(object):
     def add_card(self, card):
         self.hand.append(card)
 
-    def get_value(self):
+    def get_hand_value(self):
         value = 0
         ace = False
         for card in self.hand:
-            value += card.get_value()
+            value += card.get_card_value()
             if card.rank == "Ace":
                 ace = True
         if ace and value <= 11:
@@ -25,5 +27,5 @@ class Player(Hand):
     pass
 
 class Dealer(Hand):
-    def get_value_first_card(self):
-        return self.hand[0].get_value()
+    def get_first_card_value(self):
+        return self.hand[0].get_card_value()
