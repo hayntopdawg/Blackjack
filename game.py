@@ -21,6 +21,7 @@ def deal_game():
 
 def play_game():
     player_choice = ""
+    outcome = ""
     # If dealer is showing a ten, does dealer have 21
 
         # Dealer wins unless player has 21, which is a push
@@ -47,10 +48,15 @@ def play_game():
             player_choice = "s"
 
     # Check if player busted or has 21
+    if player.get_hand_value() == 21:
+        player_choice = "s"
+    elif player.get_hand_value() > 21:
+        player_choice = "s"
+        outcome = "dealer"
 
     # While player_choice != stand
     while player_choice != "s":
-    # Does the player hit or stand
+        # Does the player hit or stand
         player_choice = input("Hit or Stand? (H/S): ").lower()
 
         # If choice was to hit: deal one card
@@ -58,10 +64,43 @@ def play_game():
             hit()
 
         # Check if player busted or has 21
+        if player.get_hand_value() == 21:
+            player_choice = "s"
+        elif player.get_hand_value() > 21:
+            player_choice = "s"
+            outcome = "dealer"
+
+    # Dealer reveals hidden card
 
     # While dealer.get_value() < hard 17
+    while dealer.get_hand_value() < 17 and outcome != "dealer":
+        # Need to account for soft 17
+        dealer.add_card(deck.deal())
+        print("Dealer hits.")
+        print("Dealer has %d:" % dealer.get_hand_value())
+        for card in dealer.hand:
+            print(card)
+        if dealer.get_hand_value() > 21:
+            outcome = "player"
 
     # Check who wins
+    if outcome == "dealer":
+        print("Sorry, player busted.")
+    elif outcome == "player":
+        print("Dealer, busted. Player wins!")
+    elif dealer.get_hand_value() > player.get_hand_value():
+        print("Sorry, player loses.")
+        if len(dealer.hand) == 2:
+            print("Dealer has %d:" % dealer.get_hand_value())
+            for card in dealer.hand:
+                print(card)
+    elif dealer.get_hand_value() == player.get_hand_value():
+        print("Push.")
+    else:
+        print("Player wins!")
+        # print("Dealer has %d:" % dealer.get_hand_value())
+        # for card in dealer.hand:
+        #     print(card)
 
 def hit():
     player.add_card(deck.deal())
