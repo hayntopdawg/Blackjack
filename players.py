@@ -7,7 +7,14 @@ class Hand(object):
         self.hand = []
 
     def __str__(self):
-        return ','.join([card for card in self.hand])
+        if self.hand:
+            cards = ""
+            for card in self.hand:
+                cards += str(card) + ", "
+            cards = cards[:-2]
+        else:
+            cards = "<empty>"
+        return cards
 
     def add_card(self, card):
         self.hand.append(card)
