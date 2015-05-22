@@ -1,6 +1,5 @@
 __author__ = 'FujNasty'
 
-#from card import Card
 from random import randint
 
 # Global variables for cards
@@ -26,7 +25,7 @@ class Deck(object):
     Class to create a standard 52-card deck
     '''
     def __init__(self):
-        self.create_deck()
+        self.deck = self.create_deck()
 
     def __len__(self):
         return len(self.deck)
