@@ -25,7 +25,7 @@ class Deck(object):
     Class to create a standard 52-card deck
     '''
     def __init__(self):
-        self.deck = self.create_deck()
+        self.create_deck()
 
     def __len__(self):
         return len(self.deck)
@@ -58,6 +58,7 @@ class Shoe(Deck):
     Subclass of Deck.
     '''
     def __init__(self, num_decks = 1):
+        super(Shoe, self).__init__()
         self.deck = self.create_shoe(num_decks)
 
     def create_shoe(self, num_decks):
