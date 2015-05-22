@@ -129,10 +129,14 @@ def play_game():
     # Check who wins
     if outcome == "blackjack":
         print ("Blackjack!")
+        print("Dealer has %d:" % dealer.get_hand_value())
+        print(dealer)
     elif outcome == "dealer blackjack":
         print("Sorry, dealer has blackjack. Player loses.")
     elif outcome == "dealer":
         print("Sorry, player busted.")
+        print("Dealer has %d:" % dealer.get_hand_value())
+        print(dealer)
     elif outcome == "player":
         print("Dealer, busted. Player wins!")
     elif dealer.get_hand_value() > player.get_hand_value():
@@ -142,6 +146,9 @@ def play_game():
             print(dealer)
     elif dealer.get_hand_value() == player.get_hand_value():
         print("Push.")
+        if len(dealer.hand) == 2:
+            print("Dealer has %d:" % dealer.get_hand_value())
+            print(dealer)
     else:
         print("Player wins!")
         if len(dealer.hand) == 2:
